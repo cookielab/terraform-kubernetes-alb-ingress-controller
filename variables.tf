@@ -13,22 +13,10 @@ variable "aws_region" {
   description = "AWS region."
 }
 
-variable "aws_create_policy" {
-  type = bool
-  default = true
-  description = "Do you want to create IAM policy?"
-}
-
-variable "aws_role_for_policy" {
-  type = string
-  default = null
-  description = "AWS role name for attaching IAM policy"
-}
-
 variable "kubernetes_namespace" {
   type = string
   default = "kube-system"
-  description = "Kubernetes namespace to deploy ALB ingress controller."
+  description = "Kubernetes namespace to deploy external dns."
 }
 
 variable "kubernetes_namespace_create" {
@@ -37,26 +25,48 @@ variable "kubernetes_namespace_create" {
   description = "Do you want to create kubernetes namespace?"
 }
 
-variable "kubernetes_service_account_name" {
+variable "kubernetes_resources_name_prefix" {
   type = string
-  default = "alb-ingress-controller"
-  description = "Kubernetes service account name."
+  default = ""
+  description = "Prefix for kubernetes resources name. For example `tf-module-`"
 }
 
-variable "kubernetes_cluster_role_name" {
-  type = string
-  default = "alb-ingress-controller"
-  description = "Kubernetes cluster role name."
+variable "kubernetes_resources_labels" {
+  type = map(string)
+  default = {}
+  description = "Additional labels for kubernetes resources."
 }
 
-variable "kubernetes_cluster_role_binding_name" {
+variable "kubernetes_deployment_image_registry" {
   type = string
-  default = "alb-ingress-controller"
-  description = "Kubernetes cluster role binding name."
+  default = "docker.io/amazon/aws-alb-ingress-controller"
 }
 
-variable "kubernetes_deployment_name" {
+variable "kubernetes_deployment_image_tag" {
   type = string
-  default = "alb-ingress-controller"
-  description = "Kubernetes deployment name."
+  default = "v1.1.2"
+}
+
+variable "kubernetes_deployment_node_selector" {
+  type = map(string)
+  default = {}
+  description = "Node selectors for kubernetes deployment"
+}
+
+variable "aws_create_iam_policy" {
+  type = bool
+  default = true
+  description = "Do you want to create IAM policy?"
+}
+
+variable "aws_iam_policy_name" {
+  type = string
+  default = "KubernetesAlbIngressController"
+  description = "Name of AWS IAM policy."
+}
+
+variable "aws_iam_role_for_policy" {
+  type = string
+  default = null
+  description = "AWS role name for attaching IAM policy"
 }

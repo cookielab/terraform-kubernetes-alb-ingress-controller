@@ -1,8 +1,8 @@
 resource "aws_iam_policy" "alb_ingress_controller" {
-  count = var.aws_create_policy ? 1 : 0
+  count = var.aws_create_iam_policy ? 1 : 0
 
-  name = "alb-ingress-controller"
-  description = "Needed for ALB Ingress Controller"
+  name = var.aws_iam_policy_name
+  description = "Allows access to resources needed to run kubernetes AWS ALB Ingress Controller."
 
   policy = <<EOF
 {
@@ -127,8 +127,8 @@ EOF
 }
 
 resource "aws_iam_role_policy_attachment" "alb_ingress_controller" {
-  count = var.aws_create_policy && var.aws_role_for_policy != null ? 1 : 0
+  count = var.aws_create_iam_policy && var.aws_iam_role_for_policy != null ? 1 : 0
 
-  role = var.aws_role_for_policy
+  role = var.aws_iam_role_for_policy
   policy_arn = aws_iam_policy.alb_ingress_controller.0.arn
 }
