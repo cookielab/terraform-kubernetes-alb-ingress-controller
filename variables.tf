@@ -47,6 +47,12 @@ variable "kubernetes_deployment_image_tag" {
   default = "v1.1.4"
 }
 
+variable "kubernetes_deployment_annotations" {
+  type = map(string)
+  default = {}
+  description = "Annotations for pod template"
+}
+
 variable "kubernetes_deployment_node_selector" {
   type = map(string)
   default = {}
