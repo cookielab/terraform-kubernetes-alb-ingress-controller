@@ -44,7 +44,7 @@ variable "kubernetes_deployment_image_registry" {
 
 variable "kubernetes_deployment_image_tag" {
   type = string
-  default = "v1.1.4"
+  default = "v1.1.8"
 }
 
 variable "kubernetes_deployment_annotations" {
