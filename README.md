@@ -1,5 +1,8 @@
 # Terraform module for Kubernetes ALB Ingress Controller on AWS
 
+> [!WARNING]  
+> This module is no longer maintained. We recommend switching to [Helm](https://artifacthub.io/packages/helm/aws/aws-load-balancer-controller).
+
 This module deploys [ALB Ingress Controller](https://kubernetes-sigs.github.io/aws-alb-ingress-controller/) for AWS to your Kubernetes cluster.
 
 ## Usage
